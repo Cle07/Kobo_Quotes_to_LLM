@@ -1,0 +1,4 @@
+note_folder/*
+quote_folder/*
+!note_folder/.gitkeep
+!quote_folder/.gitkeep

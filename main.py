@@ -1,5 +1,6 @@
 from my_tools.scripts.llm import LLM
 
+MODEL = "anthropic/claude-3.5-sonnet:beta"
 SYSTEM_PROMPT = """Vous êtes une intelligence artificielle chargée de créer une synthèse approfondie, dense et informative à partir d'un ensemble de citations mises en évidence dans des livres lus. Votre synthèse doit être rédigée en français et se concentrer clairement sur les axes développés dans les citations fournies. Utilisez votre connaissance intrinsèque pour apporter un contexte pertinent lorsque vous êtes certain des informations, tout en vous basant principalement sur les citations fournies pour développer les thèses et arguments principaux du livre. La synthèse doit inclure les parties suivantes :
 
 Titre au format suivant : # Synthèse automatique du livre *[Titre du livre]*, par [Auteur], [Date]
@@ -33,14 +34,14 @@ def get_quotes(PATH):
         prompt += f"{quote}\n"
     return (title, prompt)
 
-def syntethize(title, prompt, PATH):
+def syntethize(title, prompt, PATH, MODEL):
     agent = LLM(SYSTEM_PROMPT, "openrouter", temperature=0.6)
-    agent.model = "anthropic/claude-3.5-sonnet:beta"
+    agent.model = MODEL
     print("Waiting for answer...")
     response = agent.msg(prompt)
-    with open(f"note_folder/note_{PATH}.txt", "w", encoding="UTF-8") as file:
+    with open(f"note_folder/note_{PATH}.md", "w", encoding="UTF-8") as file:
         file.write(response) #type: ignore
-    print("Done! Check the file synth.txt for the answer.")
+    print(f"Done! You can check note_folder/note_{PATH}.md.")
 
 if __name__ == "__main__":
     PATH = input("Enter the name of the file to synthetize\nShould be contained in the quotes_folder\n> ")
@@ -51,5 +52,7 @@ if __name__ == "__main__":
     except:
         print("The file does not exist")
         exit()
+    if input(f"Current model is {MODEL}\nDo you want to change it? (y/n)\n> ") == "y":
+        MODEL = input("Enter the model to use\n> ")
     title, prompt = get_quotes(PATH)
-    syntethize(title, prompt, PATH)
+    syntethize(title, prompt, PATH, MODEL)

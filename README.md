@@ -13,7 +13,7 @@ Perfect for researchers, students, or avid readers who want to get more value fr
 
 ## Dependencies
 
-Currently uses a custom local LLM wrapper supporting OpenRouter API. Future versions will migrate to [ell](https://docs.ell.so/index.html) library.
+Uses [ell](https://docs.ell.so/index.html) library as openai wrapper and OpenRouter API for inference.
 
 ## How to Use
 

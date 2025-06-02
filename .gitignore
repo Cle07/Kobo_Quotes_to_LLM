@@ -2,3 +2,8 @@ note_folder/*
 quote_folder/*
 !note_folder/.gitkeep
 !quote_folder/.gitkeep
+.ropeproject
+.ruff_cache
+.venv
+logdir
+.python-version

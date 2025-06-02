@@ -1,6 +1,6 @@
 # KoboQuotes to LLM Synthesis
 
-A small personal tool to generate comprehensive book summaries from your Kobo highlights using LLMs.
+A small personal tool to generate dense book summaries from your Kobo highlights using LLMs.
 
 ## Overview
 
@@ -9,13 +9,9 @@ This tool takes your exported Kobo highlights, processes them through an LLM (La
 - Main thesis and arguments
 - Key points
 
-Perfect for researchers, students, or avid readers who want to get more value from their reading notes.
-
-## Dependencies
-
-Uses [ell](https://docs.ell.so/index.html) library as openai wrapper and OpenRouter API for inference.
-
 ## How to Use
+
+*This script relies on OpenRouter for LLM calls, make sure to have your API key in env.*
 
 1. **Export your Kobo highlights**
    - Connect your Kobo device.
@@ -26,13 +22,9 @@ Uses [ell](https://docs.ell.so/index.html) library as openai wrapper and OpenRou
    - Place your exported highlights in the `quote_folder` directory.
    - Run the script:
      ```bash
-     python main.py
+     uv run main.py --file_name <YOUR_FILENAME_WITHOUT_ITS_EXTENSION>  --model <THE_MODEL_YOU_WANNA_USE> # or --all
      ```
-   - Enter the name of your quote file when prompted (without .txt).
 
-3. **Get your synthesis**
-   - Find your generated summary in the `note_folder` directory.
-   - The summary will be in markdown format, ready to use in your note-taking system.
 
 ## Output Format
 
